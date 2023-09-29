@@ -5,23 +5,31 @@
 # Instructor's Name: Brian Brookwell
 # CMPT 360
 *------------------------------------------------------*/ 
-// package Lab2;
 
 public class Location {
+
+    // Attributes
+
     private int neighbourhoodID;
     private String neighbourhood;
     private String ward;
+
+    // Constructor
 
     public Location(int neighbourhoodID, String neighbourhood, String ward) {
         this.neighbourhoodID = neighbourhoodID;
         this.neighbourhood = neighbourhood;
         this.ward = ward;
     }
+
+    /** Override Methods */ 
+
     @Override
     public String toString() {
         return neighbourhood;
     }
 
+    /** Getter/Setter Methods */ 
 
 
     public int getNeighbourhoodID() {

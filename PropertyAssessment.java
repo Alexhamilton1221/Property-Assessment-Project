@@ -1,121 +1,114 @@
 /*-------------------------------------------------------
 # Student's Name: Alexander Hamilton
-# Lab #1 Property.java
+# Lab #1 PropertyAssessment.java
 # Lab Section: X02L
 # Instructor's Name: Brian Brookwell
 # CMPT 360
-*------------------------------------------------------*/ 
-// package Lab2;
+*------------------------------------------------------*/
 
 public class PropertyAssessment implements Comparable<PropertyAssessment> {
 
-//Attributes
-private int Account_Number;
-private int Suite;
-private int House_Number;
-private String Street_Name;
-private char Garage;
-private Location location;
-private int Assessed_Value;
-private Coordinate coordinate;
-private Assessment assessment;
+    // Attributes
+    private int Account_Number;
+    private int Suite;
+    private int House_Number;
+    private String Street_Name;
+    private char Garage;
+    private Location location;
+    private int Assessed_Value;
+    private Coordinate coordinate;
+    private Assessment assessment;
 
-// Constructor
-// Constructor
-public PropertyAssessment(int accountNumber, int suite, int houseNumber, String streetName, char garage, Location location, int assessedValue, Coordinate coordinate, Assessment assessment) {
-    this.Account_Number = accountNumber;
-    this.Suite = suite;
-    this.House_Number = houseNumber;
-    this.Street_Name = streetName;
-    this.Garage = garage;
-    this.location=location;
-    this.Assessed_Value = assessedValue;
-    this.coordinate = coordinate;
-    this.assessment = assessment; 
-}
-
-// Methods
-// @Override
-// public String toString() {
-//     // Customize the string representation of a property object
-//     return "Property [Account_Number=" + Account_Number + ", Street_Name=" + Street_Name + ", Assessed_Value=" + Assessed_Value + "]";
-// }
-@Override 
-public int compareTo(PropertyAssessment other){
-    return Integer.compare(Assessed_Value, other.Assessed_Value);
+    // Constructor
+    public PropertyAssessment(int accountNumber, int suite, int houseNumber, String streetName, char garage,
+            Location location, int assessedValue, Coordinate coordinate, Assessment assessment) {
+        this.Account_Number = accountNumber;
+        this.Suite = suite;
+        this.House_Number = houseNumber;
+        this.Street_Name = streetName;
+        this.Garage = garage;
+        this.location = location;
+        this.Assessed_Value = assessedValue;
+        this.coordinate = coordinate;
+        this.assessment = assessment;
     }
 
-public int getAccount_Number() {
-    return Account_Number;
-}
+    /** Override Methods */
+    @Override
+    public int compareTo(PropertyAssessment other) {
+        return Integer.compare(Assessed_Value, other.Assessed_Value);
+    }
 
-public void setAccount_Number(int accountNumber) {
-    this.Account_Number = accountNumber;
-}
+    /** Getter/Setter Methods */
+    public int getAccount_Number() {
+        return Account_Number;
+    }
 
-public int getSuite() {
-    return Suite;
-}
+    public void setAccount_Number(int accountNumber) {
+        this.Account_Number = accountNumber;
+    }
 
-public void setSuite(int suite) {
-    this.Suite = suite;
-}
+    public int getSuite() {
+        return Suite;
+    }
 
-public int getHouse_Number() {
-    return House_Number;
-}
+    public void setSuite(int suite) {
+        this.Suite = suite;
+    }
 
-public void setHouse_Number(int houseNumber) {
-    this.House_Number = houseNumber;
-}
+    public int getHouse_Number() {
+        return House_Number;
+    }
 
-public String get_StreetName() {
-    return Street_Name;
-}
+    public void setHouse_Number(int houseNumber) {
+        this.House_Number = houseNumber;
+    }
 
-public void set_StreetName(String streetName) {
-    this.Street_Name = streetName;
-}
+    public String get_StreetName() {
+        return Street_Name;
+    }
 
-public char get_Garage() {
-    return Garage;
-}
+    public void set_StreetName(String streetName) {
+        this.Street_Name = streetName;
+    }
 
-public void set_Garage(char garage) {
-    this.Garage = garage;
-}
+    public char get_Garage() {
+        return Garage;
+    }
 
-public Location getLocation() {
-    return location;
-}
+    public void set_Garage(char garage) {
+        this.Garage = garage;
+    }
 
-public void setLocation(Location location) {
-    this.location = location;
-}
+    public Location getLocation() {
+        return location;
+    }
 
-public int getAssessed_Value() {
-    return Assessed_Value;
-}
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-public void setAssessed_Value(int assessedValue) {
-    this.Assessed_Value = assessedValue;
-}
+    public int getAssessed_Value() {
+        return Assessed_Value;
+    }
 
-public Coordinate getCoordinate() {
-    return coordinate;
-}
+    public void setAssessed_Value(int assessedValue) {
+        this.Assessed_Value = assessedValue;
+    }
 
-public void setCoordinate(Coordinate coordinate) {
-    this.coordinate = coordinate;
-}
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
 
-public Assessment getAssessment() {
-    return assessment;
-}
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
+    }
 
-public void setAssessment(Assessment assessment) {
-    this.assessment = assessment;
-}
+    public Assessment getAssessment() {
+        return assessment;
+    }
 
-
+    public void setAssessment(Assessment assessment) {
+        this.assessment = assessment;
+    }
 }
