@@ -1,6 +1,6 @@
 /*-------------------------------------------------------
 # Student's Name: Alexander Hamilton
-# Lab #2 Location.java
+# Location.java
 # Lab Section: X02L
 # Instructor's Name: Brian Brookwell
 # CMPT 360
@@ -8,13 +8,13 @@
 
 public class Location {
 
-    /**  Attributes */
+    // Attributes 
 
     private int neighbourhoodID;
     private String neighbourhood;
     private String ward;
 
-    /** Constructor */
+    // Constructor 
 
     public Location(int neighbourhoodID, String neighbourhood, String ward) {
         this.neighbourhoodID = neighbourhoodID;
@@ -22,15 +22,14 @@ public class Location {
         this.ward = ward;
     }
 
-    /** Override Methods */ 
+    // Override Methods 
 
     @Override
     public String toString() {
         return neighbourhood;
     }
 
-    /** Getter/Setter Methods */ 
-
+    // Getter/Setter Methods 
 
     public int getNeighbourhoodID() {
         return neighbourhoodID;

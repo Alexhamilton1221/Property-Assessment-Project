@@ -1,6 +1,6 @@
 /*-------------------------------------------------------
 # Student's Name: Alexander Hamilton
-# Lab #2 statistics.java
+# Statistics.java
 # Lab Section: X02L
 # Instructor's Name: Brian Brookwell
 # CMPT 360
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class statistics {
+public class Statistics {
 
     /**
      * Calculates the median assessed value from a list of property assessments.
@@ -31,7 +31,7 @@ public class statistics {
         int median;
         int size = sortedValues.size();
 
-        //Find median, odd/even cases
+        // Find median, odd/even cases
         if (size % 2 == 0) {
             int middle1 = sortedValues.get(size / 2 - 1);
             int middle2 = sortedValues.get(size / 2);
@@ -70,7 +70,7 @@ public class statistics {
      */
     public int findLowestAssessedValue(List<PropertyAssessment> properties) {
         PropertyAssessment lowestValue = properties.get(0);
-        
+
         // Look for a value lower than the min value
         for (PropertyAssessment property : properties) {
             if (property.compareTo(lowestValue) < 0) {

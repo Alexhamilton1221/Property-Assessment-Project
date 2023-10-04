@@ -1,6 +1,6 @@
 /*-------------------------------------------------------
 # Student's Name: Alexander Hamilton
-# Lab #2 PropertyAssessment.java
+# PropertyAssessment.java
 # Lab Section: X02L
 # Instructor's Name: Brian Brookwell
 # CMPT 360
@@ -8,7 +8,7 @@
 
 public class PropertyAssessment implements Comparable<PropertyAssessment> {
 
-    /**  Attributes */
+    /** Attributes */
     private int Account_Number;
     private int Suite;
     private int House_Number;
@@ -33,16 +33,18 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
         this.assessment = assessment;
     }
 
-    /** Override Methods */
+    // Override Methods
     @Override
     public int compareTo(PropertyAssessment other) {
         return Integer.compare(Assessed_Value, other.Assessed_Value);
     }
+
+    @Override
     public String toString() {
         return "";
-       }
+    }
 
-    /** Getter/Setter Methods */
+    // Getter/Setter Methods
     public int getAccount_Number() {
         return Account_Number;
     }

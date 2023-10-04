@@ -1,16 +1,14 @@
 /*-------------------------------------------------------
 # Student's Name: Alexander Hamilton
-# Lab #2 Assessment.java
+# Assessment.java
 # Lab Section: X02L
 # Instructor's Name: Brian Brookwell
 # CMPT 360
 *------------------------------------------------------*/ 
-// package Lab2;
-
 
 public class Assessment {
 
-    /**  Attributes */
+    // Attributes 
 
     private int class1;
     private int class2;
@@ -19,7 +17,7 @@ public class Assessment {
     private String class_2;
     private String class_3;
 
-    /** Constructor */
+    // Constructor 
 
     public Assessment(int class1, int class2, int class3, String class_1, String class_2, String class_3) {
         this.class1 = class1;
@@ -30,14 +28,14 @@ public class Assessment {
         this.class_3 = class_3;
     }
     
-    /** Override Methods */ 
+    // Override Methods 
 
     @Override
     public String toString() {
-     return "["+class_1+" "+class1+"%, "+class_2+" "+class2+"%, "+class_3+" "+class3+"%]";   
+        return "[" + class_1 + " " + class1 + "%, " + class_2 + " " + class2 + "%, " + class_3 + " " + class3 + "%]";
     }
 
-    /** Getter/Setter Methods */ 
+    // Getter/Setter Methods 
 
     public int getClass1() {
         return class1;
