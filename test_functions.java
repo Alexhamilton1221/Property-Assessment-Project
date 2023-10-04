@@ -1,9 +1,21 @@
+/*-------------------------------------------------------
+# Student's Name: Alexander Hamilton
+# Lab #2 test_functions.java
+# Lab Section: X02L
+# Instructor's Name: Brian Brookwell
+# CMPT 360
+*------------------------------------------------------*/
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 
 public class test_functions {
 
     /**
-     * Function to print property attributes.
+     * Test function to print property attributes.
      *
      * @param properties List of PropertyAssessment objects.
      */
@@ -39,4 +51,75 @@ public class test_functions {
             System.out.println("-------------------------------------");
         }
     }
+
+/**
+* Test run for get_properties()
+*
+*
+* @return The line with correct formating.
+*/
+
+public void test_get_properties() {
+
+// Create an ArrayList for properties
+List<PropertyAssessment> all_properties = new ArrayList<>();
+String current_line; 
+
+// Create a Set to store unique ward values
+Set<String> uniqueWards = new HashSet<>();
+
+/**  Instance of functions class */
+functions functionInstance = new functions();
+
+//Open file
+try {
+    Scanner inFile = new Scanner(Paths.get("Property_Assessment_Data_2022.csv"));
+
+    // Skip the first line (column headers)
+    if (inFile.hasNextLine()) {
+        inFile.nextLine();
+    }
+
+   for (int i = 0; i < 20; i++) { 
+        current_line=inFile.nextLine();
+
+        // Split line into array with comma delimiter
+        String[] values = current_line.split(",");
+
+        // Create a Property object using the createProperty function
+        PropertyAssessment new_property = functionInstance.createProperty(values);
+
+        // Add to list
+        all_properties.add(new_property);
+
+        // Add the ward to the set of wards. Duplicates are dealt with already.
+        uniqueWards.add(new_property.getLocation().getWard());
+        }//loop
+        int uniqueWardCount = uniqueWards.size();
+
+        // Print all attributes
+        //test_print_properties(all_properties);
+
+        // Print statistics for all properties
+        functionInstance.print_statistics(all_properties,"Descriptive statistics of all property assessments");
+
+        //Find property by account number
+        System.out.println("\nPrinting property assessment for account 1034321");
+        functionInstance.searchbyaccountnum(all_properties,1034321);
+
+        String neighbourhood_name="ELMWOOD";
+
+        //Find all properties in a neighbourhood
+        List<PropertyAssessment> propertiesInNeighbourhood = functionInstance.findPropertiesByNeighbourhood(all_properties, neighbourhood_name);
+        
+        // Print statistics for Neighbourhood
+        functionInstance.print_statistics(propertiesInNeighbourhood,"Neighbourhood: "+neighbourhood_name);
+
+} catch (Exception e) {
+    System.out.println(e);
+    return;
+}
+}
+
+
 }

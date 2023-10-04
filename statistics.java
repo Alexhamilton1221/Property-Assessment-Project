@@ -19,17 +19,19 @@ public class statistics {
      * @return The median assessed value.
      */
     public int calculateMedian(List<PropertyAssessment> properties) {
+        // Populate list of assessed values
         List<Integer> assessedValuesList = new ArrayList<>();
         for (PropertyAssessment property : properties) {
             assessedValuesList.add(property.getAssessed_Value());
         }
-
+        // Sort Assessed Values
         List<Integer> sortedValues = new ArrayList<>(assessedValuesList);
         Collections.sort(sortedValues);
 
         int median;
         int size = sortedValues.size();
 
+        //Find median, odd/even cases
         if (size % 2 == 0) {
             int middle1 = sortedValues.get(size / 2 - 1);
             int middle2 = sortedValues.get(size / 2);
@@ -67,17 +69,16 @@ public class statistics {
      * @return The lowest assessed value.
      */
     public int findLowestAssessedValue(List<PropertyAssessment> properties) {
-        int lowestValue = Integer.MAX_VALUE; // Initialize as the highest integer
-
-        // Look for a value lower than the max value
+        PropertyAssessment lowestValue = properties.get(0);
+        
+        // Look for a value lower than the min value
         for (PropertyAssessment property : properties) {
-            int assessedValue = property.getAssessed_Value();
-            if (assessedValue < lowestValue) {
-                lowestValue = assessedValue;
+            if (property.compareTo(lowestValue) < 0) {
+                lowestValue = property;
             }
         }
 
-        return lowestValue;
+        return lowestValue.getAssessed_Value();
     }
 
     /**
@@ -89,6 +90,7 @@ public class statistics {
     public int findHighestAssessedValue(List<PropertyAssessment> properties) {
         PropertyAssessment highestValueProperty = properties.get(0);
 
+        // Look for a value higher than the max value
         for (PropertyAssessment property : properties) {
             if (property.compareTo(highestValueProperty) > 0) {
                 highestValueProperty = property;

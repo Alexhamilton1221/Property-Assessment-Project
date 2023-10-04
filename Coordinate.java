@@ -6,9 +6,14 @@
 # CMPT 360
 *------------------------------------------------------*/ 
 public class Coordinate {
+
+    /**  Attributes */
+
     private float latitude;
     private float longitude;
     private String pointLocation;
+
+    /** Constructor */
 
     public Coordinate(float latitude, float longitude, String pointLocation) {
         this.latitude = latitude;
@@ -16,10 +21,14 @@ public class Coordinate {
         this.pointLocation = pointLocation;
     }
 
+    /** Override Methods */ 
+
     @Override
     public String toString() {
      return "("+latitude+", "+longitude+")";
     }
+
+    /** Getter/Setter Methods */ 
 
     public float getLatitude() {
         return latitude;

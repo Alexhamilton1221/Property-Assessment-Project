@@ -1,6 +1,6 @@
 /*-------------------------------------------------------
 # Student's Name: Alexander Hamilton
-# Lab #1 PropertyAssessment.java
+# Lab #2 PropertyAssessment.java
 # Lab Section: X02L
 # Instructor's Name: Brian Brookwell
 # CMPT 360
@@ -8,7 +8,7 @@
 
 public class PropertyAssessment implements Comparable<PropertyAssessment> {
 
-    // Attributes
+    /**  Attributes */
     private int Account_Number;
     private int Suite;
     private int House_Number;
@@ -19,7 +19,7 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     private Coordinate coordinate;
     private Assessment assessment;
 
-    // Constructor
+    /** Constructor */
     public PropertyAssessment(int accountNumber, int suite, int houseNumber, String streetName, char garage,
             Location location, int assessedValue, Coordinate coordinate, Assessment assessment) {
         this.Account_Number = accountNumber;
@@ -38,6 +38,9 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     public int compareTo(PropertyAssessment other) {
         return Integer.compare(Assessed_Value, other.Assessed_Value);
     }
+    public String toString() {
+        return "";
+       }
 
     /** Getter/Setter Methods */
     public int getAccount_Number() {

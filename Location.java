@@ -8,13 +8,13 @@
 
 public class Location {
 
-    // Attributes
+    /**  Attributes */
 
     private int neighbourhoodID;
     private String neighbourhood;
     private String ward;
 
-    // Constructor
+    /** Constructor */
 
     public Location(int neighbourhoodID, String neighbourhood, String ward) {
         this.neighbourhoodID = neighbourhoodID;

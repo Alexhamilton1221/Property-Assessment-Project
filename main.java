@@ -12,16 +12,20 @@ public class main
 {
     public static void main(String[] args) {
 
-        // Instance of functions class
+        /**  Instance of functions class */
         functions functionInstance = new functions();
 
-        // Ask user for test run or regular run
+        /**  Instance of test_functions class */
+        test_functions testfunctionInstance = new test_functions();
+
+
+        /**  Ask user for test run or regular run*/
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter 't' or 'T' to test properties or any other key to get properties: ");
         String input = scanner.nextLine();
 
         if (input.equalsIgnoreCase("t")) {
-            functionInstance.test_get_properties();
+            testfunctionInstance.test_get_properties();
         } else {
             functionInstance.get_properties(); 
         }

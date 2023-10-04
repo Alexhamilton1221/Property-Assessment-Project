@@ -8,7 +8,14 @@
 
 
 public class generate_values {
-    //Funtions to get and check/modify property attributes
+    
+/**
+* Funtions to get and check/modify property attributes
+*
+* @param values A line of strings from a file.
+* @return The line with correct formating.
+*/
+
 public int gen_accountNumber(String[] values){
     int accountNumber = 0;
     

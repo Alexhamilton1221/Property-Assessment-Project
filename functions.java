@@ -14,6 +14,14 @@ import java.nio.file.Paths;
 
 public class functions{
 
+
+/**
+* Prompts a user for a filename and attempts to import it.
+*
+*
+* @return The opened file.
+*/
+
 public Scanner get_file(){
     Scanner scanner = new Scanner(System.in);
 
@@ -22,7 +30,6 @@ public Scanner get_file(){
     Scanner inFile=null;
     try{
     inFile = new Scanner(Paths.get(filename));
-   //Scanner inFile = new Scanner(Paths.get("Property_Assessment_Data_2022.csv"));
     } catch (Exception e) {
     System.out.println(e);
 }
@@ -30,65 +37,14 @@ public Scanner get_file(){
 
  }
 
-public void test_get_properties() {
 
-// Create an ArrayList for properties
-List<PropertyAssessment> all_properties = new ArrayList<>();
-String current_line; int count=0;
 
-// Create a Set to store unique ward values
-Set<String> uniqueWards = new HashSet<>();
-
-//Open file
-try {
-    Scanner inFile = new Scanner(Paths.get("Property_Assessment_Data_2022.csv"));
-
-    // Skip the first line (column headers)
-    if (inFile.hasNextLine()) {
-        inFile.nextLine();
-    }
-
-   for (int i = 0; i < 5; i++) { 
-        current_line=inFile.nextLine();
-        count++;
-
-        // Split line into array with comma delimiter
-        String[] values = current_line.split(",");
-
-        // Create a Property object using the createProperty function
-        PropertyAssessment new_property = createProperty(values);
-
-        // Add to list
-        all_properties.add(new_property);
-
-        // Add the ward to the set of wards. Duplicates are dealt with already.
-        uniqueWards.add(new_property.getLocation().getWard());
-        }//loop
-        int uniqueWardCount = uniqueWards.size();
-
-        // Print all attributes
-        //test_print_properties(all_properties);
-
-        // Print statistics for all properties
-        print_statistics(all_properties,"Descriptive statistics of all property assessments");
-
-        //Find property by account number
-        System.out.println("\nPrinting property assessment for account 1034321");
-        searchbyaccountnum(all_properties,1034321);
-
-        String neighbourhood_name="BELLE RIVE";
-
-        //Find all properties in a neighbourhood
-        List<PropertyAssessment> propertiesInNeighbourhood = findPropertiesByNeighbourhood(all_properties, neighbourhood_name);
-        
-        // Print statistics for Neighbourhood
-        print_statistics(propertiesInNeighbourhood,"Neighbourhood: "+neighbourhood_name);
-
-} catch (Exception e) {
-    System.out.println(e);
-    return;
-}
-}//test_get_properties
+/**
+* Uses a csv file to create properties and find their stats.
+*
+*
+* 
+*/
 
 public void get_properties() {
 
@@ -153,19 +109,22 @@ try {
         print_statistics(propertiesInNeighbourhood,"Statistics: (neighbourhood = "+neighbourhood_name+")");
 
 
-
-
 } catch (Exception e) {
     System.out.println(e);
     return;
     
 }
 
-}//get_properties
+}
 
-
-
-private void searchbyaccountnum(List<PropertyAssessment> properties,int accountNumberToFind){
+/**
+* Searches for a property by its account number and prints it.
+*
+* @param properties A list of PropertyAssessment objects.
+* @param accountNumberToFind A integer for a properties account number
+* 
+*/
+public void searchbyaccountnum(List<PropertyAssessment> properties,int accountNumberToFind){
     Scanner scanner = new Scanner(System.in);
 
     if (accountNumberToFind==0){
@@ -173,7 +132,7 @@ private void searchbyaccountnum(List<PropertyAssessment> properties,int accountN
         accountNumberToFind = scanner.nextInt();
         
     }
-
+        /**TODO USE TOSTRING FUNCTION */
         for (PropertyAssessment property : properties) {
            if (property.getAccount_Number() == accountNumberToFind) {
                 //Print out Property Details
@@ -187,12 +146,16 @@ private void searchbyaccountnum(List<PropertyAssessment> properties,int accountN
                 break;
             }
     }
-    //scanner.close(); // Close the scanner after use
 }
 
-
-//Funtion to print out results
-private void print_statistics(List<PropertyAssessment> properties,String title) {
+/**
+* Prints the statistics of a properties list.
+*
+* @param properties A list of PropertyAssessment objects.
+* @param title A string to print as a title
+* 
+*/
+public void print_statistics(List<PropertyAssessment> properties,String title) {
 
     //Instance of Value Modifier class
     statistics statistics = new statistics();
@@ -214,12 +177,19 @@ private void print_statistics(List<PropertyAssessment> properties,String title) 
     System.out.println("median = $" + median);
 }
 
-//Function to create a property 
-private PropertyAssessment createProperty(String[] values) {
+/**
+* Creates a new property object from a array of string values.
+*
+* @param values A line of strings from a file.
+* @return new_property A new property object
+* 
+*/
+public PropertyAssessment createProperty(String[] values) {
 
     //Instance of Value Modifier class
     generate_values generate_values = new generate_values();
 
+    /**TODO Automate this with a list, very clunky */
         // Process lines into values
         int accountNumber=generate_values.gen_accountNumber(values);
         int suite = generate_values.gen_suite(values);
@@ -257,9 +227,19 @@ private PropertyAssessment createProperty(String[] values) {
         return new_property;
 }
 
+/**
+* Finds all properties in a neighbourhood
+*
+* @param properties A list of PropertyAssessment objects.
+* @param neighbourhoodToFind A string for the niehgbourhood to find
+* @return matchingProperties A new list of properties in a neighbourhood 
+* 
+*/
+
 public List<PropertyAssessment> findPropertiesByNeighbourhood(List<PropertyAssessment> properties, String neighbourhoodToFind) {
     List<PropertyAssessment> matchingProperties = new ArrayList<>();
 
+    // Find all properties in a neighbourhood, put in a new list
     for (PropertyAssessment property : properties) {
         if (property.getLocation().getNeighbourhood().equalsIgnoreCase(neighbourhoodToFind)) {
             matchingProperties.add(property);
@@ -271,4 +251,4 @@ public List<PropertyAssessment> findPropertiesByNeighbourhood(List<PropertyAsses
 
 
 
-}//class
+}
