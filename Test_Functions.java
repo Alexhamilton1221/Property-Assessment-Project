@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Test_Functions {
 
@@ -62,7 +61,7 @@ public class Test_Functions {
         String current_line;
 
         // Create a Set to store unique ward values
-        Set<String> uniqueWards = new HashSet<>();
+        HashSet<PropertyAssessment> uniqueWards = new HashSet<>();
 
         //  Instance of functions class 
         Functions functionInstance = new Functions();
@@ -83,15 +82,15 @@ public class Test_Functions {
                 String[] values = current_line.split(",");
 
                 // Create a Property object using the createProperty function
-                PropertyAssessment new_property = functionInstance.createProperty(values);
+                PropertyAssessment new_property = new PropertyAssessment(values);
 
                 // Add to list
                 all_properties.add(new_property);
 
                 // Add the ward to the set of wards. Duplicates are dealt with already.
-                uniqueWards.add(new_property.getLocation().getWard());
+                uniqueWards.add(new_property);
             } // loop
-            int uniqueWardCount = uniqueWards.size();
+            //int uniqueWardCount = uniqueWards.size();
 
             // Print all attributes
             // test_print_properties(all_properties);
