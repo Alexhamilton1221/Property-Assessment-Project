@@ -6,6 +6,8 @@
 # CMPT 360
 *------------------------------------------------------*/
 
+import java.util.Objects;
+
 public class PropertyAssessment implements Comparable<PropertyAssessment> {
 
     /** Attributes */
@@ -19,18 +21,70 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     private Coordinate coordinate;
     private Assessment assessment;
 
-    /** Constructor */
-    public PropertyAssessment(int accountNumber, int suite, int houseNumber, String streetName, char garage,
-            Location location, int assessedValue, Coordinate coordinate, Assessment assessment) {
-        this.Account_Number = accountNumber;
-        this.Suite = suite;
-        this.House_Number = houseNumber;
-        this.Street_Name = streetName;
-        this.Garage = garage;
-        this.location = location;
-        this.Assessed_Value = assessedValue;
-        this.coordinate = coordinate;
-        this.assessment = assessment;
+    /**
+     * Constructor to create a PropertyAssessment object from a string array of values.
+     *
+     * @param values An array of strings containing property attributes.
+     */
+    public PropertyAssessment(String[] values) {
+        this.Account_Number = parseInteger(values[0]);
+        this.Suite = parseInteger(values[1]);
+        this.House_Number = parseInteger(values[2]);
+        this.Street_Name = (values[3].isEmpty()) ? "NONE" : values[3];
+        this.Garage = (values[4].isEmpty()) ? 'N' : values[4].charAt(0);
+        this.location = new Location(
+            parseInteger(values[5]),             // Neighbourhood ID
+            (values[6].isEmpty()) ? "NONE" : values[6], // Neighbourhood
+            (values[7].isEmpty()) ? "NONE" : values[7]  // Ward
+        );
+        this.Assessed_Value = parseInteger(values[8]);
+        this.coordinate = new Coordinate(
+            parseFloat(values[9]),              // Latitude
+            parseFloat(values[10]),             // Longitude
+            (values[11].isEmpty()) ? "NONE" : values[11]  // Point Location
+        );
+        this.assessment = new Assessment(
+            parseInteger(values[12]),                // Assessment Class 1
+            parseInteger(values[13]),                // Assessment Class 2
+            parseInteger(values[14]),                // Assessment Class 3
+            (values[15].isEmpty()) ? "NONE" : values[15], // Assessment Class 1 (String)
+            (values.length > 16 && !values[16].isEmpty()) ? values[16] : "NONE", // Assessment Class 2 (String)
+            (values.length > 17 && !values[17].isEmpty()) ? values[17] : "NONE"  // Assessment Class 3 (String)
+        );
+    }
+
+    /**
+     * Parses a string to an integer while handling empty strings gracefully.
+     *
+     * @param value The string to parse as an integer.
+     * @return The parsed integer value or 0 if the string is empty or cannot be parsed.
+     */
+    private int parseInteger(String value) {
+        if (value.isEmpty()) {
+            return 0; // or any other default value
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0; // or any other default value
+        }
+    }
+
+    /**
+     * Parses a string to a float while handling empty strings gracefully.
+     *
+     * @param value The string to parse as a float.
+     * @return The parsed float value or 0.0f if the string is empty or cannot be parsed.
+     */
+    private float parseFloat(String value) {
+        if (value.isEmpty()) {
+            return 0.0f; // or any other default value
+        }
+        try {
+            return Float.parseFloat(value);
+        } catch (NumberFormatException e) {
+            return 0.0f; // or any other default value
+        }
     }
 
     // Override Methods
@@ -39,11 +93,14 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
         return Integer.compare(Assessed_Value, other.Assessed_Value);
     }
 
-    @Override
     public String toString() {
         return "";
     }
 
+    public int hashCode() {
+        return Objects.hash(location.getWard());
+    }
+    
     // Getter/Setter Methods
     public int getAccount_Number() {
         return Account_Number;
