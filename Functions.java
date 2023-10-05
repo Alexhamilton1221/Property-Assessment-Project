@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import java.nio.file.Paths;
 
 public class Functions {
@@ -29,7 +28,8 @@ public class Functions {
         try {
             inFile = new Scanner(Paths.get(filename));
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error: can't open file " + filename);
+            System.exit(1);
         }
         return inFile;
     }
@@ -43,7 +43,9 @@ public class Functions {
         String currentLine;
 
         // Create a Set to store unique ward values
-        Set<String> uniqueWards = new HashSet<>();
+        //Set<String> uniqueWards = new HashSet<>();
+        HashSet<PropertyAssessment> uniqueWards = new HashSet<>();
+
 
         // Open file
         try {
@@ -61,13 +63,14 @@ public class Functions {
                 String[] values = currentLine.split(",");
 
                 // Create a Property object using the createProperty function
-                PropertyAssessment newProperty = createProperty(values);
+                PropertyAssessment newProperty = new PropertyAssessment(values);
 
                 // Add to list
                 allProperties.add(newProperty);
 
                 // Add the ward to the set of wards. Duplicates are dealt with already.
-                uniqueWards.add(newProperty.getLocation().getWard());
+                uniqueWards.add(newProperty);
+
             }
 
             // Print statistics for all properties
@@ -104,9 +107,11 @@ public class Functions {
         Scanner scanner = new Scanner(System.in);
 
         if (accountNumberToFind == 0) {
-            System.out.print("\nFind a property assessment by account number: \n");
+            System.out.print("\nFind a property assessment by account number: ");
             accountNumberToFind = scanner.nextInt();
         }
+        boolean found = false; // Flag to track if a match is found
+
 
         for (PropertyAssessment property : properties) {
             if (property.getAccount_Number() == accountNumberToFind) {
@@ -118,9 +123,16 @@ public class Functions {
                 System.out.println("Neighbourhood = " + property.getLocation());
                 System.out.println("Location = " + property.getCoordinate());
 
+                found = true;
                 break;
             }
         }
+
+        if (!found) {
+            System.out.println("No property found with account number: " + accountNumberToFind);
+        }
+
+
     }
 
     /**
@@ -130,8 +142,14 @@ public class Functions {
      * @param title      A string to be displayed above the stats.
      */
     public void printStatistics(List<PropertyAssessment> properties, String title) {
+
+        if (properties.isEmpty()) {
+            System.out.println("No properties to calculate statistics for.");
+            return; // Exit the function if the list is empty
+        }
         // Instance of Value Modifier class
         Statistics statistics = new Statistics();
+
         int count = properties.size();
         int minAssessedValue = statistics.findLowestAssessedValue(properties);
         int maxAssessedValue = statistics.findHighestAssessedValue(properties);
@@ -149,53 +167,6 @@ public class Functions {
     }
 
     /**
-     * Create a PropertyAssessment object from an array of property values.
-     *
-     * @param values A line of strings from a file.
-     * @return A PropertyAssessment object.
-     */
-    public PropertyAssessment createProperty(String[] values) {
-        // Instance of Value Modifier class
-        GenerateValues generateValues = new GenerateValues();
-
-        // Process lines into values
-        int accountNumber = generateValues.gen_accountNumber(values);
-        int suite = generateValues.gen_suite(values);
-        int houseNumber = generateValues.gen_housenum(values);
-        String streetName = generateValues.gen_streetName(values);
-        char garage = generateValues.gen_garage(values);
-        int neighbourhoodId = generateValues.gen_neighbourhoodID(values);
-        String neighbourhood = generateValues.gen_neighbourhood(values);
-        String ward = generateValues.genWard(values);
-        int assessedValue = generateValues.gen_acessed_value(values);
-        float latitude = generateValues.gen_latitude(values);
-        float longitude = generateValues.gen_longitude(values);
-        String pointLocation = generateValues.gen_point_location(values);
-        int assessmentClass1 = generateValues.gen_assessment_class1(values);
-        int assessmentClass2 = generateValues.gen_assessment_class2(values);
-        int assessmentClass3 = generateValues.gen_assessment_class3(values);
-        String assessmentClass_1 = generateValues.gen_assessment_class_1(values);
-        String assessmentClass_2 = generateValues.gen_assessment_class_2(values);
-        String assessmentClass_3 = generateValues.gen_assessment_class_3(values);
-
-        // Create an Assessment object
-        Assessment assessment = new Assessment(assessmentClass1, assessmentClass2, assessmentClass3,
-                assessmentClass_1, assessmentClass_2, assessmentClass_3);
-
-        // Create a Coordinate object
-        Coordinate coordinate = new Coordinate(latitude, longitude, pointLocation);
-
-        // Create a Location object
-        Location location = new Location(neighbourhoodId, neighbourhood, ward);
-
-        // Create a Property object with the other objects included
-        PropertyAssessment newProperty = new PropertyAssessment(accountNumber, suite, houseNumber, streetName, garage,
-                location, assessedValue, coordinate, assessment);
-
-        return newProperty;
-    }
-
-    /**
      * Find properties in a neighborhood and put them in a list.
      *
      * @param properties         The list of PropertyAssessment objects.
@@ -204,14 +175,25 @@ public class Functions {
      */
     public List<PropertyAssessment> findPropertiesByNeighbourhood(List<PropertyAssessment> properties, String neighbourhoodToFind) {
         List<PropertyAssessment> matchingProperties = new ArrayList<>();
+        boolean found = false; // Flag to track if a match is found
+
 
         // Find all properties in a neighbourhood, put in a new list
         for (PropertyAssessment property : properties) {
-            if (property.getLocation().getNeighbourhood().equalsIgnoreCase(neighbourhoodToFind)) {
+            String propertyNeighbourhood = property.getLocation().getNeighbourhood().toLowerCase(); 
+
+            if (propertyNeighbourhood.equals(neighbourhoodToFind.toLowerCase())) {
                 matchingProperties.add(property);
+                found = true; 
             }
         }
+        
+        if (!found) {
+            System.out.println("No properties found in the neighborhood: " + neighbourhoodToFind);
+        }
+    
 
         return matchingProperties;
     }
+
 }
