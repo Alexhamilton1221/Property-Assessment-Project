@@ -57,9 +57,12 @@ public class Statistics {
             sumAssessedValues += property.getAssessed_Value();
         }
         // Divide by the total number of entries
-        int mean = sumAssessedValues / properties.size();
+        double mean = (double) sumAssessedValues / properties.size();
 
-        return mean;
+        // Round it back to nearest integer
+        int roundedMean = (int) Math.round(mean);
+
+        return roundedMean;
     }
 
     /**

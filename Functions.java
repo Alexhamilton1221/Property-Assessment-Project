@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 
 public class Functions {
 
@@ -33,6 +34,18 @@ public class Functions {
         }
         return inFile;
     }
+
+     /**
+     * Formats money amounts with commas.
+     *
+     * @param amount The amount of money to format.
+     * @return A string representation of the formatted amount with commas.
+     */
+    public static String formatMoney(int amount) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(amount);
+    }
+
 
     /**
      * Load and process property data from a CSV file.
@@ -117,10 +130,10 @@ public class Functions {
             if (property.getAccount_Number() == accountNumberToFind) {
                 // Print out Property Details
                 System.out.println("Account Number = " + property.getAccount_Number());
-                System.out.println("Address = " + property.get_StreetName());
-                System.out.println("Assessed Value = " + property.getAssessed_Value());
+                System.out.println("Address = " + property.getHouse_Number()+" "+property.get_StreetName());
+                System.out.println("Assessed Value = $" + formatMoney(property.getAssessed_Value()));
                 System.out.println("Assessment Class = " + property.getAssessment());
-                System.out.println("Neighbourhood = " + property.getLocation());
+                System.out.println("Neighbourhood = " + property.getLocation()+" ("+property.getLocation().getWard()+")");
                 System.out.println("Location = " + property.getCoordinate());
 
                 found = true;
@@ -159,11 +172,11 @@ public class Functions {
 
         System.out.println("\n" + title);
         System.out.println("n = " + count);
-        System.out.println("min = $" + minAssessedValue);
-        System.out.println("max = $" + maxAssessedValue);
-        System.out.println("range = $" + range);
-        System.out.println("mean = $" + mean);
-        System.out.println("median = $" + median);
+        System.out.println("min = $" + formatMoney(minAssessedValue));
+        System.out.println("max = $" + formatMoney(maxAssessedValue));
+        System.out.println("range = $" + formatMoney(range));
+        System.out.println("mean = $" + formatMoney(mean));
+        System.out.println("median = $" + formatMoney(median));
     }
 
     /**

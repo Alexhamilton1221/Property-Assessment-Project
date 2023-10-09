@@ -18,11 +18,13 @@ public class Main {
 
       
        
-        testfunctionInstance.test_get_properties();
+        //testfunctionInstance.test_get_properties();
         functionInstance.getProperties();
         
     }
 }
-/* TODO Rule of thumb: The supporting classes should not contain any print statements or those that ask for user input */
-/* Need to move print statements and such to main */
+/* TODO 
+ * Rule of thumb: The supporting classes should not contain any print statements or those that ask for user input */
+/* Need to move print statements and such to main *
+
 /* */

@@ -54,36 +54,36 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     }
 
     /**
-     * Parses a string to an integer while handling empty strings gracefully.
+     * Parses a string to an integer.
      *
      * @param value The string to parse as an integer.
      * @return The parsed integer value or 0 if the string is empty or cannot be parsed.
      */
     private int parseInteger(String value) {
         if (value.isEmpty()) {
-            return 0; // or any other default value
+            return 0; 
         }
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            return 0; // or any other default value
+            return 0; 
         }
     }
 
     /**
-     * Parses a string to a float while handling empty strings gracefully.
+     * Parses a string to a float.
      *
      * @param value The string to parse as a float.
      * @return The parsed float value or 0.0f if the string is empty or cannot be parsed.
      */
     private float parseFloat(String value) {
         if (value.isEmpty()) {
-            return 0.0f; // or any other default value
+            return 0.0f; 
         }
         try {
             return Float.parseFloat(value);
         } catch (NumberFormatException e) {
-            return 0.0f; // or any other default value
+            return 0.0f; 
         }
     }
 
