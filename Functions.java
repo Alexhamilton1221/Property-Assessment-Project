@@ -41,7 +41,7 @@ public class Functions {
      * @param amount The amount of money to format.
      * @return A string representation of the formatted amount with commas.
      */
-    public static String formatMoney(int amount) {
+    public static String formatMoney(long amount) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         return decimalFormat.format(amount);
     }
@@ -167,7 +167,7 @@ public class Functions {
         int minAssessedValue = statistics.findLowestAssessedValue(properties);
         int maxAssessedValue = statistics.findHighestAssessedValue(properties);
         int range = maxAssessedValue - minAssessedValue;
-        int mean = statistics.find_mean(properties);
+        long mean = statistics.find_mean(properties);
         int median = statistics.calculateMedian(properties);
 
         System.out.println("\n" + title);

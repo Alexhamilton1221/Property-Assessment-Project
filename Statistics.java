@@ -49,8 +49,8 @@ public class Statistics {
      * @param properties A list of PropertyAssessment objects.
      * @return The mean assessed value.
      */
-    public int find_mean(List<PropertyAssessment> properties) {
-        int sumAssessedValues = 0;
+    public long find_mean(List<PropertyAssessment> properties) {
+        long sumAssessedValues = 0;
 
         // Get sum of all of the values
         for (PropertyAssessment property : properties) {
@@ -60,7 +60,7 @@ public class Statistics {
         double mean = (double) sumAssessedValues / properties.size();
 
         // Round it back to nearest integer
-        int roundedMean = (int) Math.round(mean);
+        long roundedMean = (int) Math.round(mean);
 
         return roundedMean;
     }

@@ -9,13 +9,13 @@ public class Coordinate {
 
     // Attributes
 
-    private float latitude;
-    private float longitude;
+    private double latitude;
+    private double longitude;
     private String pointLocation;
 
     // Constructor
 
-    public Coordinate(float latitude, float longitude, String pointLocation) {
+    public Coordinate(double latitude, double longitude, String pointLocation) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.pointLocation = pointLocation;
@@ -30,7 +30,7 @@ public class Coordinate {
 
     // Getter/Setter Methods 
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -38,7 +38,7 @@ public class Coordinate {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 

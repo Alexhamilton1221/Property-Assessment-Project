@@ -23,8 +23,4 @@ public class Main {
         
     }
 }
-/* TODO 
- * Rule of thumb: The supporting classes should not contain any print statements or those that ask for user input */
-/* Need to move print statements and such to main *
 
-/* */
