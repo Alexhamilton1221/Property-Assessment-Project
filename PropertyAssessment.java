@@ -39,8 +39,8 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
         );
         this.Assessed_Value = parseInteger(values[8]);
         this.coordinate = new Coordinate(
-            parseFloat(values[9]),              // Latitude
-            parseFloat(values[10]),             // Longitude
+            parseDouble(values[9]),              // Latitude
+            parseDouble(values[10]),             // Longitude
             (values[11].isEmpty()) ? "NONE" : values[11]  // Point Location
         );
         this.assessment = new Assessment(
@@ -71,17 +71,17 @@ public class PropertyAssessment implements Comparable<PropertyAssessment> {
     }
 
     /**
-     * Parses a string to a float.
+     * Parses a string to a double.
      *
      * @param value The string to parse as a float.
-     * @return The parsed float value or 0.0f if the string is empty or cannot be parsed.
+     * @return The parsed double value or 0.0f if the string is empty or cannot be parsed.
      */
-    private float parseFloat(String value) {
+    private double parseDouble(String value) {
         if (value.isEmpty()) {
             return 0.0f; 
         }
         try {
-            return Float.parseFloat(value);
+            return Double.parseDouble(value);
         } catch (NumberFormatException e) {
             return 0.0f; 
         }
