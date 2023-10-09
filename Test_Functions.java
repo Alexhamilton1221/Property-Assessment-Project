@@ -18,6 +18,7 @@ public class Test_Functions {
      *
      * @param properties List of PropertyAssessment objects.
      */
+
     private void test_print_properties(List<PropertyAssessment> properties) {
         System.out.println("Testing Run");
 
@@ -93,7 +94,7 @@ public class Test_Functions {
             //int uniqueWardCount = uniqueWards.size();
 
             // Print all attributes
-            // test_print_properties(all_properties);
+            test_print_properties(all_properties);
 
             // Print statistics for all properties
             functionInstance.printStatistics(all_properties, "Descriptive statistics of all property assessments");
@@ -115,4 +116,7 @@ public class Test_Functions {
             return;
         }
     }
+
+
+    
 }
